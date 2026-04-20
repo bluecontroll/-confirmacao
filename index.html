@@ -352,11 +352,12 @@
     errMsg.style.display  = 'none';
 
     try {
+      const form = new FormData();
+      Object.keys(payload).forEach(k => form.append(k, payload[k]));
       await fetch(SHEETS_URL, {
         method: 'POST',
         mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        body: form
       });
       showSuccess(nome, total, attending);
     } catch(err) {
