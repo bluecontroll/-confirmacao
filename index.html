@@ -40,7 +40,6 @@
     overflow: hidden;
   }
   
-  /* Estilização refinada para as ilustrações laterais */
   .leaf-tl, .leaf-br { 
     position: absolute; 
     opacity: 0.35; 
@@ -201,6 +200,38 @@
   }
   .success-msg h2 { font-family: 'Great Vibes', cursive; font-size: 2.8rem; color: var(--gold); margin-bottom: 12px; }
   .success-msg p { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--muted); font-size: 1.05rem; line-height: 1.7; }
+  
+  /* Botão do Grupo do WhatsApp elegante */
+  .whatsapp-group-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 32px;
+    padding: 16px 32px;
+    border: 1px solid var(--gold);
+    background: transparent;
+    color: var(--gold);
+    text-decoration: none;
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    transition: all 0.3s ease;
+    animation: fadeUp 0.8s ease forwards 0.4s;
+    opacity: 0;
+  }
+  .whatsapp-group-btn:hover {
+    background: var(--gold);
+    color: var(--warm-white);
+    transform: translateY(-2px);
+  }
+  .whatsapp-group-btn svg {
+    fill: currentColor;
+    transition: fill 0.3s ease;
+  }
 
   footer { text-align: center; padding: 32px 24px; border-top: 1px solid #e8e3dc; font-size: 0.72rem; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; }
 
@@ -294,7 +325,7 @@
         CEP 93490-390 · Sítio</p>
       </div>
     </div>
-    <a class="map-btn reveal" href="http://googleusercontent.com/maps.google.com/2" target="_blank" rel="noopener">
+    <a class="map-btn reveal" href="https://maps.google.com" target="_blank" rel="noopener">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
       Ver no mapa
     </a>
@@ -342,6 +373,8 @@
     <div class="success-icon">♡</div>
     <h2 id="success-title">Obrigado!</h2>
     <p id="success-body">Sua confirmação foi recebida.</p>
+    
+    <div id="whatsapp-container"></div>
   </div>
 </section>
 
@@ -421,12 +454,24 @@
     document.getElementById('form-wrapper').style.display = 'none';
     document.getElementById('success').classList.add('show');
     const primeiro = nome.split(' ')[0];
+    const whatsappContainer = document.getElementById('whatsapp-container');
+    whatsappContainer.innerHTML = ''; // Limpa antes de gerar
+
     if (attending) {
       document.getElementById('success-title').textContent = `Até lá, ${primeiro}!`;
       document.getElementById('success-body').innerHTML =
         `Sua presença foi confirmada${total > 1 ? ` para <strong>${total} pessoas</strong>` : ''}.<br>
          Nos vemos no dia <strong>26 de março de 2027</strong> às <strong>15h30</strong>.<br>
          <span style="color:var(--gold);font-style:italic;">Que alegria celebrar com você! ✨</span>`;
+         
+      // Acrescenta o botão do grupo do WhatsApp caso ela vá comparecer
+      whatsappContainer.innerHTML = `
+        <a href="https://chat.whatsapp.com/IdDF6I4iymM2ZjJjsB70Ar?mode=gi_t" class="whatsapp-group-btn" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.413 9.863-9.847.002-2.633-1.023-5.107-2.887-6.974C16.577 1.917 14.11 .89 11.487.89c-5.443 0-9.866 4.414-9.869 9.848-.002 1.748.461 3.454 1.341 4.973l-.993 3.623 3.714-.974zm11.02-3.41c-.244-.122-1.447-.714-1.671-.796-.224-.082-.388-.122-.55.122-.164.245-.634.796-.777.959-.143.163-.286.183-.53.061-.244-.122-1.03-.38-1.962-1.21-.725-.647-1.215-1.446-1.357-1.69-.143-.244-.015-.376.107-.497.111-.11.244-.286.366-.429.122-.143.163-.245.245-.408.082-.163.041-.306-.02-.429-.062-.122-.55-1.327-.753-1.816-.198-.477-.399-.413-.55-.421-.143-.007-.306-.007-.469-.007-.163 0-.429.061-.653.306-.224.245-.857.837-.857 2.041 0 1.204.878 2.367.999 2.53.123.164 1.73 2.642 4.191 3.707.585.254 1.042.405 1.398.518.588.187 1.123.16 1.545.097.47-.071 1.447-.592 1.651-1.163.204-.572.204-1.061.143-1.163-.061-.101-.224-.163-.468-.285z"/>
+          </svg>
+          Entrar no grupo do casamento
+        </a>`;
     } else {
       document.getElementById('success-title').textContent = `Que pena, ${primeiro}!`;
       document.getElementById('success-body').innerHTML =
