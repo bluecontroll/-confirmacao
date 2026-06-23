@@ -281,7 +281,7 @@
     </div>
     <div id="extra-fields" style="display:none">
       <div class="form-group reveal">
-        <label>Número de acompanhantes</label>
+        <label>Número de pessoas que comparecerão</label>
         <select id="acompanhantes">
           <option value="0">Virei sozinho(a)</option>
           <option value="1">+ 1 acompanhante</option>
@@ -314,7 +314,7 @@
 
 <script>
   // COLE A URL DO SEU GOOGLE APPS SCRIPT AQUI DEPOIS DO PASSO 2
-  const SHEETS_URL = https://script.google.com/macros/s/AKfycbzloB1kSr08Ls3Q5DqUc1D_6XYuSuVGxZaXcds2Qg1ome0Hd-3Abb7f0sC5rN4uyXiI2g/exec;
+  const SHEETS_URL = "https://script.google.com/macros/s/AKfycbzloB1kSr08Ls3Q5DqUc1D_6XYuSuVGxZaXcds2Qg1ome0Hd-3Abb7f0sC5rN4uyXiI2g/exec";
 
   let attending = null;
 
@@ -359,7 +359,7 @@
       const response = await fetch(`${SHEETS_URL}?${urlParams.toString()}`, {
         method: 'GET'
       });
-      
+
       const result = await response.json();
 
       if (result.status === 'success') {
