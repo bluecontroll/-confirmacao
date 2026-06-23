@@ -282,12 +282,7 @@
     <div id="extra-fields" style="display:none">
       <div class="form-group reveal">
         <label>Número de pessoas que comparecerão</label>
-        <select id="acompanhantes">
-          <option value="0">Virei sozinho(a)</option>
-          <option value="1">+ 1 acompanhante</option>
-          <option value="2">+ 2 acompanhantes</option>
-          <option value="3">+ 3 acompanhantes</option>
-        </select>
+        <input type="text" id="acompanhantes" inputmode="numeric" pattern="[0-9]*" maxlength="2" placeholder="Ex: 2"/>
       </div>
       <div class="form-group reveal">
         <label>Recado para os noivos (opcional)</label>
@@ -331,9 +326,15 @@
     if (!nome)             { alert('Por favor, informe seu nome.'); return; }
     if (attending === null){ alert('Por favor, confirme se irá comparecer.'); return; }
 
-    const acomp    = attending ? document.getElementById('acompanhantes').value : '0';
+    const qtdRaw = attending ? document.getElementById('acompanhantes').value.trim() : '0';
+    if (attending && (!qtdRaw || isNaN(qtdRaw) || parseInt(qtdRaw) < 1)) {
+      alert('Por favor, informe quantas pessoas comparecerão (mínimo 1).');
+      return;
+    }
+
     const recado   = attending ? document.getElementById('recado').value.trim() : '';
-    const total    = attending ? (1 + parseInt(acomp)) : 0;
+    const total    = attending ? parseInt(qtdRaw) : 0;
+    const acomp    = attending ? Math.max(0, total - 1) : 0;
 
     const btn     = document.getElementById('submit-btn');
     const label   = document.getElementById('btn-label');
@@ -405,6 +406,10 @@
     if (v.length >= 7)      v = `(${v.slice(0,2)}) ${v.slice(2,7)}-${v.slice(7)}`;
     else if (v.length >= 3) v = `(${v.slice(0,2)}) ${v.slice(2)}`;
     e.target.value = v;
+  });
+
+  document.getElementById('acompanhantes').addEventListener('input', function(e) {
+    e.target.value = e.target.value.replace(/\D/g,'').slice(0,2);
   });
 </script>
 </body>
