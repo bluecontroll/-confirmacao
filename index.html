@@ -66,8 +66,11 @@
 
   .couple-name {
     font-family: 'Great Vibes', cursive;
-    font-size: clamp(3rem, 11vw, 5.5rem);
+    font-size: clamp(2.7rem, 10vw, 5rem);
+    font-weight: 400;
+    letter-spacing: 0.015em;
     color: var(--gold);
+    -webkit-text-stroke: 0.3px var(--cream);
     margin-top: 48px;
     opacity: 0;
     animation: fadeUp 1s ease forwards 0.6s;
@@ -311,27 +314,6 @@
   </div>
 </section>
 
-<section class="info-section">
-  <div class="info-inner">
-    <p class="section-label reveal">Detalhes da cerimônia</p>
-    <div class="info-grid">
-      <div class="info-item reveal"><h3>Data</h3><p class="big">26 março<br>2027</p></div>
-      <div class="info-item reveal"><h3>Horário</h3><p class="big">15:00hr</p></div>
-      <div class="info-item reveal" style="grid-column: 1 / -1;">
-        <h3>Local</h3>
-        <p><strong style="font-weight:400;color:var(--dark);">Steigen Eventos</strong><br>
-        Estr. Francisco Waldemar Böhrer<br>
-        Lomba Grande — Novo Hamburgo, RS<br>
-        CEP 93490-390 · Sítio</p>
-      </div>
-    </div>
-    <a class="map-btn reveal" href="https://maps.google.com" target="_blank" rel="noopener">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-      Ver no mapa
-    </a>
-  </div>
-</section>
-
 <section class="rsvp-section" id="confirmacao">
   <h2 class="rsvp-title reveal">Confirmação</h2>
   <p class="rsvp-subtitle reveal">Confirme sua presença até 20 de Dezembro de 2026</p>
@@ -375,6 +357,27 @@
     <p id="success-body">Sua confirmação foi recebida.</p>
     
     <div id="whatsapp-container"></div>
+  </div>
+</section>
+
+<section class="info-section">
+  <div class="info-inner">
+    <p class="section-label reveal">Detalhes da cerimônia</p>
+    <div class="info-grid">
+      <div class="info-item reveal"><h3>Data</h3><p class="big">26 março<br>2027</p></div>
+      <div class="info-item reveal"><h3>Horário</h3><p class="big">15:00hr</p></div>
+      <div class="info-item reveal" style="grid-column: 1 / -1;">
+        <h3>Local</h3>
+        <p><strong style="font-weight:400;color:var(--dark);">Steigen Eventos</strong><br>
+        Estr. Francisco Waldemar Böhrer<br>
+        Lomba Grande — Novo Hamburgo, RS<br>
+        CEP 93490-390 · Sítio</p>
+      </div>
+    </div>
+    <a class="map-btn reveal" href="https://maps.google.com" target="_blank" rel="noopener">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+      Ver no mapa
+    </a>
   </div>
 </section>
 
